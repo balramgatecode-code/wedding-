@@ -180,16 +180,60 @@
   color: #6b3a43
 }
 
+/* Mobile viewport protection */
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+.site {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 .day-contact__others {
-  margin: 6px 0 0;
-  font: 500 15px "DM Sans", sans-serif;
-  line-height: 1.9
+  margin: 12px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px 10px;
+  max-width: 100%;
 }
 
 .day-contact__others a {
   color: inherit;
   text-decoration: none;
-  white-space: nowrap
+  white-space: nowrap;
+  font: 500 clamp(12px, 3.2vw, 14px) "DM Sans", sans-serif;
+  padding: 5px 12px;
+  background: rgba(187, 129, 59, 0.08);
+  border: 1px solid rgba(187, 129, 59, 0.28);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.day-contact__others a:hover,
+.day-contact__others a:focus-visible {
+  background: rgba(187, 129, 59, 0.18);
+  border-color: #851d2f;
+  color: #851d2f;
+  transform: translateY(-1px);
+}
+
+@media(max-width: 650px) {
+  .day-contact__others {
+    justify-content: center;
+    gap: 8px 8px;
+    margin-top: 12px;
+  }
+  .day-contact__others a {
+    padding: 5px 10px;
+    font-size: 12.5px;
+  }
 }
 
 .wedding-close__credit {
@@ -580,5 +624,97 @@
 
   .gallery__controls {
     margin-top: 0 !important;
+  }
+}
+
+/* ───────── Music Control Button (Exact match to requested UI) ───────── */
+.music-toggle {
+  position: fixed !important;
+  top: max(16px, env(safe-area-inset-top)) !important;
+  right: max(16px, env(safe-area-inset-right)) !important;
+  z-index: 99999 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 7px !important;
+  height: 38px !important;
+  min-height: 38px !important;
+  padding: 0 14px 0 12px !important;
+  border-radius: 999px !important;
+  background: #fff8ec !important;
+  border: 1.5px solid rgba(198, 135, 70, 0.55) !important;
+  box-shadow: 0 4px 14px rgba(67, 34, 23, 0.16), 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+  color: #7b2233 !important;
+  cursor: pointer !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease !important;
+  user-select: none !important;
+  -webkit-tap-highlight-color: transparent !important;
+}
+
+.music-toggle:hover {
+  background: #fffdf5 !important;
+  border-color: #851d2f !important;
+  box-shadow: 0 6px 18px rgba(67, 34, 23, 0.22) !important;
+  transform: translateY(-1px) scale(1.02) !important;
+}
+
+.music-toggle:active {
+  transform: translateY(1px) scale(0.98) !important;
+  box-shadow: 0 2px 8px rgba(67, 34, 23, 0.15) !important;
+}
+
+.music-toggle__icon {
+  width: 17px !important;
+  height: 17px !important;
+  flex-shrink: 0 !important;
+  color: #7b2233 !important;
+  transition: transform 0.3s ease !important;
+}
+
+.music-toggle.is-playing .music-toggle__icon {
+  animation: musicIconPulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes musicIconPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.08) rotate(-4deg); }
+  100% { transform: scale(1); }
+}
+
+.music-toggle.is-paused {
+  opacity: 0.82 !important;
+  background: #fbf4ea !important;
+  border-color: rgba(198, 135, 70, 0.35) !important;
+}
+
+.music-toggle.is-paused .music-toggle__icon {
+  opacity: 0.6;
+}
+
+.music-toggle__label {
+  font-family: 'DM Sans', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  color: #7b2233 !important;
+  line-height: 1 !important;
+}
+
+@media (max-width: 650px) {
+  .music-toggle {
+    height: 35px !important;
+    min-height: 35px !important;
+    padding: 0 12px 0 10px !important;
+    top: max(12px, env(safe-area-inset-top)) !important;
+    right: max(12px, env(safe-area-inset-right)) !important;
+  }
+  .music-toggle__icon {
+    width: 15px !important;
+    height: 15px !important;
+  }
+  .music-toggle__label {
+    font-size: 12px !important;
   }
 }

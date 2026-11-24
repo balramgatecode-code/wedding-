@@ -111,12 +111,17 @@ function SlotNumber({ value }) {
 }
 
 /* ───────── door entry ───────── */
-function DoorEntry({ onBegin, onReveal, onComplete, reducedMotion }) {
+function DoorEntry({ onPrime, onDoorOpen, onComplete, reducedMotion }) {
   const [opened, setOpened] = useState(false)
   const open = () => {
     if (opened) return
-    setOpened(true); onBegin()
-    if (reducedMotion) { onReveal(); onComplete(); return }
+    setOpened(true)
+    if (onPrime) onPrime()
+    if (reducedMotion) {
+      if (onDoorOpen) onDoorOpen()
+      onComplete()
+      return
+    }
     gsap.timeline({ onComplete })
       .to('.door-entry__prompt', { autoAlpha: 0, scale: 0.88, duration: 0.2, ease: 'power2.in' }, 0)
       .to('.door-entry__light', { autoAlpha: 0.9, scale: 1.08, duration: 0.75, ease: 'power2.out' }, 0.06)
@@ -128,8 +133,10 @@ function DoorEntry({ onBegin, onReveal, onComplete, reducedMotion }) {
       .to('.door-entry__backdrop', { scale: 1.16, filter: 'blur(8px)', duration: 0.9, ease: 'power3.in' }, 1.38)
       .to('.door-entry__vortex', { scale: 2.7, autoAlpha: 0, duration: 0.85, ease: 'power3.in' }, 1.38)
       .to('.door-entry__light', { autoAlpha: 0, scale: 2.4, duration: 0.85, ease: 'power2.in' }, 1.38)
-      .call(onReveal, [], 1.62)
-      .to('.door-entry', { autoAlpha: 0, duration: 0.38, ease: 'power1.out' }, 2.12)
+      .call(() => {
+        if (onDoorOpen) onDoorOpen()
+      }, [], 1.52)
+      .to('.door-entry', { autoAlpha: 0, duration: 0.42, ease: 'power1.out' }, 2.05)
   }
   return (
     <div className="door-entry" role="dialog" aria-modal="true" aria-label="Open the wedding invitation">
@@ -850,7 +857,14 @@ function DayContact() {
             <h3>{CONTACT.heading}</h3>
             <p className="day-contact__role">{CONTACT.role}</p>
             <a className="day-contact__number" href={`tel:+91${CONTACT.numbers[0]}`}>{fmt(CONTACT.numbers[0])}</a>
-            <p className="day-contact__others">{CONTACT.numbers.slice(1).map((n, i) => <a key={n} href={`tel:+91${n}`}>{i ? ' · ' : ''}{fmt(n)}</a>)}</p>
+            <div className="day-contact__others">
+              {CONTACT.numbers.slice(1).map((n) => (
+                <a key={n} href={`tel:+91${n}`}>
+                  <svg aria-hidden="true" viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ opacity: 0.7 }}><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+                  <span>{fmt(n)}</span>
+                </a>
+              ))}
+            </div>
           </div>
           <div className="day-contact__actions">
             <a className="day-contact__action day-contact__action--call" href={`tel:+91${CONTACT.numbers[0]}`} aria-label="Call the family">
@@ -875,7 +889,7 @@ export default function App() {
   const [reduced, setReduced] = useState(false)
   const [entered, setEntered] = useState(false)
   const [playing, setPlaying] = useState(false)
-  const [hasMusic, setHasMusic] = useState(true)
+  const [hasMusic, setHasMusic] = useState(Boolean(MUSIC_SRC))
 
   useEffect(() => {
     const t = setInterval(() => setLeft(timeLeft()), 1000)
@@ -890,8 +904,9 @@ export default function App() {
     return () => { document.body.style.overflow = prev }
   }, [entered])
 
-  const play = () => { const a = audio.current; if (!a) return; a.volume = 0.58; a.play().then(() => setPlaying(true)).catch(() => setPlaying(false)) }
-  const toggle = () => { const a = audio.current; if (!a) return; if (a.paused) play(); else { a.pause(); setPlaying(false) } }
+  const play = () => { const a = audio.current; if (!a || !MUSIC_SRC) return; a.volume = 0.58; a.play().then(() => setPlaying(true)).catch(() => setPlaying(false)) }
+  const prime = () => { const a = audio.current; if (a && MUSIC_SRC) { a.load() } }
+  const toggle = () => { const a = audio.current; if (!a || !MUSIC_SRC) return; if (a.paused) play(); else { a.pause(); setPlaying(false) } }
 
   const heroIntro = () => {
     if (reduced) return
@@ -972,12 +987,35 @@ export default function App() {
 
   return (
     <div className="site" ref={root}>
-      {hasMusic && <audio ref={audio} src={MUSIC_SRC} loop preload="auto" onError={() => setHasMusic(false)} />}
-      {!entered && <DoorEntry onBegin={play} onReveal={heroIntro} onComplete={() => setEntered(true)} reducedMotion={reduced} />}
-      {entered && hasMusic && (
-        <button className="music-toggle" type="button" onClick={toggle} aria-label={playing ? 'Turn music off' : 'Turn music on'} aria-pressed={playing}>
-          <svg aria-hidden="true" viewBox="0 0 24 24"><path d="M9 18V5l12-2v13M9 8l12-2M9 18a3.5 2.5 0 1 1-3.5-2.5A3.5 2.5 0 0 1 9 18Zm12-2a3.5 2.5 0 1 1-3.5-2.5A3.5 2.5 0 0 1 21 16Z" /></svg>
-          <small>{playing ? 'On' : 'Off'}</small>
+      {hasMusic && MUSIC_SRC && <audio ref={audio} src={MUSIC_SRC} loop preload="auto" onError={() => setHasMusic(false)} />}
+      {!entered && (
+        <DoorEntry
+          onPrime={prime}
+          onDoorOpen={() => {
+            heroIntro()
+            if (MUSIC_SRC) play()
+          }}
+          onComplete={() => {
+            setEntered(true)
+            if (MUSIC_SRC) play()
+          }}
+          reducedMotion={reduced}
+        />
+      )}
+      {entered && hasMusic && MUSIC_SRC && (
+        <button
+          className={`music-toggle${playing ? ' is-playing' : ' is-paused'}`}
+          type="button"
+          onClick={toggle}
+          aria-label={playing ? 'Turn music off' : 'Turn music on'}
+          aria-pressed={playing}
+        >
+          <svg className="music-toggle__icon" aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M9 18V5l12-2v13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+            <circle cx="6" cy="18" r="3" fill="currentColor" />
+            <circle cx="18" cy="16" r="3" fill="currentColor" />
+          </svg>
+          <span className="music-toggle__label">{playing ? 'On' : 'Off'}</span>
         </button>
       )}
       <a className="sr-only focus-link" href="#details">Skip to celebration details</a>
