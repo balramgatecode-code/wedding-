@@ -1,0 +1,584 @@
+/* Additions for content the original design did not have */
+.portrait-placeholder {
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 35%, #b23147, #5a0f23 75%);
+  color: #ffe5b1
+}
+
+.portrait-placeholder b {
+  font: 400 clamp(64px, 16vw, 110px)/1 "Pinyon Script", "Cormorant Garamond", serif
+}
+
+.gallery__placeholder {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-content: center;
+  gap: 6px;
+  text-align: center;
+  background: radial-gradient(circle at 50% 30%, #a82844, #4d0b1b 80%);
+  color: #ffe5b1
+}
+
+.gallery__placeholder b {
+  font: 400 clamp(30px, 8vw, 46px)/1.1 "Pinyon Script", "Cormorant Garamond", serif
+}
+
+.gallery__placeholder i {
+  font-style: normal;
+  color: #f0bd77
+}
+
+.invitation-hindi {
+  font-family: "Noto Serif Devanagari", serif;
+  font-size: .95em;
+  max-width: 34ch;
+  margin: 14px auto 0;
+  line-height: 1.8;
+  opacity: .9
+}
+
+.families {
+  display: grid;
+  gap: 22px;
+  margin: 42px auto 0;
+  max-width: 760px;
+  grid-template-columns: 1fr 1fr;
+  text-align: center
+}
+
+.families p {
+  margin: 0 0 6px;
+  font: 600 11px "DM Sans", sans-serif;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #a82844
+}
+
+.families strong {
+  display: block;
+  font: 600 clamp(18px, 3.8vw, 23px)/1.25 "Cormorant Garamond", serif;
+  color: #4e2029
+}
+
+.families small {
+  display: block;
+  margin-top: 6px;
+  font: 400 14px/1.45 "Cormorant Garamond", serif;
+  color: #6b3a43
+}
+
+@media(max-width:650px) {
+  .families {
+    grid-template-columns: 1fr
+  }
+}
+
+.family {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(70px, 10vw, 120px) 20px;
+  background: linear-gradient(#fff0d7, #f9dfb9);
+  text-align: center
+}
+
+.family__heading p {
+  margin: 0;
+  font: 600 12px "DM Sans", sans-serif;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: #a82844
+}
+
+.family__heading h2 {
+  margin: 8px 0;
+  font: 500 clamp(38px, 8vw, 64px)/1.05 "Cormorant Garamond", serif;
+  color: #4e2029
+}
+
+.family__ornament {
+  width: 200px;
+  color: #c68746
+}
+
+.family__heading span {
+  display: block;
+  margin-top: 8px;
+  font: 400 17px "Noto Serif Devanagari", serif;
+  color: #6b3a43
+}
+
+.family__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 18px;
+  max-width: 1060px;
+  margin: 44px auto 0
+}
+
+.family-card {
+  padding: 26px 20px;
+  border: 1px solid rgba(198, 135, 70, .5);
+  border-radius: 18px;
+  background: rgba(255, 248, 235, .82);
+  box-shadow: 0 14px 40px rgba(105, 13, 33, .08)
+}
+
+.family-card h3 {
+  margin: 0;
+  font: 700 20px "Noto Serif Devanagari", serif;
+  color: #912339
+}
+
+.family-card small {
+  display: block;
+  margin: 2px 0 12px;
+  font: 600 10px "DM Sans", sans-serif;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: #c68746
+}
+
+.family-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 7px;
+  font: 400 15px/1.5 "Noto Serif Devanagari", serif;
+  color: #4e2029
+}
+
+.niharati {
+  position: relative;
+  z-index: 1;
+  max-width: 720px;
+  margin: 48px auto 0;
+  padding: 28px 22px;
+  border-top: 1px solid rgba(198, 135, 70, .6);
+  border-bottom: 1px solid rgba(198, 135, 70, .6)
+}
+
+.niharati__title {
+  margin: 0 0 10px;
+  font: 700 22px "Noto Serif Devanagari", serif;
+  color: #912339
+}
+
+.niharati__verse {
+  margin: 0 0 12px;
+  font: 500 17px/1.8 "Noto Serif Devanagari", serif;
+  color: #4e2029
+}
+
+.niharati__names {
+  margin: 0;
+  font: 400 15px/1.8 "Noto Serif Devanagari", serif;
+  color: #6b3a43
+}
+
+.day-contact__others {
+  margin: 6px 0 0;
+  font: 500 15px "DM Sans", sans-serif;
+  line-height: 1.9
+}
+
+.day-contact__others a {
+  color: inherit;
+  text-decoration: none;
+  white-space: nowrap
+}
+
+.wedding-close__credit {
+  max-width: 640px;
+  margin: 0 auto;
+  font-family: "Noto Serif Devanagari", serif !important;
+  line-height: 1.8
+}
+
+.festivities .event-stop__details span {
+  font-size: inherit
+}
+
+/* "Pooja & Nitesh" is longer than the original's names — scale the hero title down */
+.hero h1 {
+  font-size: clamp(3.4rem, 7vw, 5.8rem)
+}
+
+@media(max-width:700px) {
+  .hero h1 {
+    font-size: clamp(2.6rem, 12.2vw, 4.2rem);
+    letter-spacing: -.05em
+  }
+}
+
+@media(max-width:365px) {
+  .hero h1 {
+    font-size: 12vw
+  }
+}
+
+/* ───────── Video-matched Scratch Card & Countdown ───────── */
+.scratch-countdown-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 580px;
+  margin: 0 auto 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.scratch-card-stage {
+  position: relative;
+  width: 100%;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 248, 238, 0.94));
+  border: 1.5px solid rgba(212, 163, 89, 0.45);
+  box-shadow: 0 16px 36px rgba(105, 13, 33, 0.09), 0 4px 14px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(8px);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.scratch-revealed-content {
+  position: relative;
+  padding: 38px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  user-select: none;
+}
+
+.scratch-revealed-kicker {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #a86b32;
+  margin: 0 0 10px;
+}
+
+.scratch-revealed-date {
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(40px, 9vw, 58px);
+  font-weight: 400;
+  color: #851d2f;
+  line-height: 1.1;
+  margin: 0 0 10px;
+  text-shadow: 0 1px 2px rgba(133, 29, 47, 0.08);
+}
+
+.scratch-revealed-venue {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(10.5px, 2.5vw, 12.5px);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #6b3a43;
+  margin: 0 0 6px;
+}
+
+.scratch-revealed-time {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 15px;
+  font-style: italic;
+  color: #8e5838;
+  margin: 0;
+}
+
+/* Canvas Overlay */
+.scratch-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  z-index: 10;
+  touch-action: none;
+  cursor: crosshair;
+  transition: opacity 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.scratch-card-stage.is-revealed .scratch-canvas {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Shimmer overlay */
+.scratch-shimmer {
+  position: absolute;
+  inset: 0;
+  z-index: 11;
+  pointer-events: none;
+  background: linear-gradient(105deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.16) 45%,
+      rgba(255, 255, 255, 0.32) 50%,
+      rgba(255, 255, 255, 0.16) 55%,
+      transparent 70%);
+  background-size: 200% 100%;
+  animation: scratchShimmerAnim 3.2s infinite;
+  border-radius: inherit;
+}
+
+@keyframes scratchShimmerAnim {
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.scratch-card-stage.is-revealed .scratch-shimmer {
+  display: none;
+}
+
+/* Helper / Accessibility reveal button */
+.scratch-helper-btn {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  z-index: 12;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(14, 34, 64, 0.85);
+  color: #fce7ba;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+}
+
+.scratch-helper-btn:hover {
+  background: rgba(22, 50, 92, 0.98);
+  transform: translateY(-1px);
+}
+
+.scratch-card-stage.is-revealed .scratch-helper-btn {
+  display: none;
+}
+
+/* Confetti Shower */
+.scratch-confetti-wrap {
+  position: absolute;
+  inset: -60px -40px;
+  pointer-events: none;
+  z-index: 30;
+  overflow: visible;
+}
+
+.scratch-confetti-piece {
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  opacity: 0;
+  animation: confettiExplode 2.5s cubic-bezier(0.12, 0.8, 0.3, 1) var(--delay) forwards;
+}
+
+@keyframes confettiExplode {
+  0% {
+    transform: translate(-50%, -50%) translate(0, 0) scale(0) rotate(0deg);
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translate(var(--tx), var(--ty)) scale(1.1) rotate(calc(var(--rot) * 0.4));
+  }
+
+  75% {
+    opacity: 0.95;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) translate(calc(var(--tx) * 1.25), calc(var(--ty) + 260px)) scale(0.75) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+
+/* ─── Countdown Section (Revealed underneath) ─── */
+.countdown-revealed-wrap {
+  width: 100%;
+  margin-top: 26px;
+  animation: countdownRevealSlide 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@keyframes countdownRevealSlide {
+  0% {
+    opacity: 0;
+    transform: translateY(26px) scale(0.96);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.countdown-revealed-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  margin-bottom: 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #a86b32;
+}
+
+.countdown-revealed-heading .heading-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(206, 146, 75, 0.5), transparent);
+}
+
+.countdown-revealed-card {
+  width: 100%;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.98), rgba(255, 248, 238, 0.94));
+  border: 1.5px solid rgba(212, 163, 89, 0.45);
+  box-shadow: 0 16px 36px rgba(105, 13, 33, 0.09), 0 4px 14px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(8px);
+  padding: 24px 16px 20px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  align-items: center;
+}
+
+.countdown-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.countdown-col:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(212, 163, 89, 0.4), transparent);
+}
+
+.countdown-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(34px, 7.5vw, 52px);
+  font-weight: 600;
+  line-height: 1;
+  color: #24161b;
+  font-variant-numeric: tabular-nums;
+  margin-bottom: 4px;
+}
+
+.countdown-unit {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(9px, 2vw, 11px);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #925838;
+}
+
+.countdown-revealed-footer {
+  margin-top: 18px;
+  font-family: 'Pinyon Script', cursive;
+  font-size: clamp(24px, 5.5vw, 34px);
+  color: #851d2f;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.countdown-revealed-footer i {
+  font-style: normal;
+  font-size: 16px;
+  color: #c68746;
+}
+
+.scratch-again-btn {
+  margin-top: 16px;
+  background: transparent;
+  border: 1px solid rgba(198, 135, 70, 0.4);
+  border-radius: 999px;
+  padding: 6px 16px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #851d2f;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.scratch-again-btn:hover {
+  background: rgba(198, 135, 70, 0.14);
+  border-color: #851d2f;
+}
+
+@media(max-width: 650px) {
+  .scratch-countdown-wrap {
+    padding: 0 10px;
+  }
+
+  .scratch-revealed-content {
+    padding: 28px 16px 24px;
+  }
+
+  .countdown-revealed-card {
+    padding: 18px 10px 16px;
+    border-radius: 18px;
+  }
+
+  .scratch-card-stage {
+    border-radius: 18px;
+  }
+}
+
+/* ───────── Gallery Carousel 3D Spacing & Controls Fix ───────── */
+.gallery__carousel {
+  margin-bottom: clamp(65px, 9vw, 95px) !important;
+}
+
+.gallery__controls {
+  position: relative !important;
+  z-index: 10 !important;
+  margin-top: 0 !important;
+}
+
+@media (max-width: 700px) {
+  .gallery__carousel {
+    margin-bottom: clamp(50px, 8vw, 75px) !important;
+  }
+
+  .gallery__controls {
+    margin-top: 0 !important;
+  }
+}
