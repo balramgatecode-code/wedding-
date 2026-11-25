@@ -718,3 +718,6 @@ html, body {
     font-size: 12px !important;
   }
 }
+
+/* keep faces in frame for portrait gallery photos */
+.gallery__photo img{object-fit:cover;object-position:50% 8%}

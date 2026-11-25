@@ -516,7 +516,10 @@ function RoyalCouple() {
 }
 
 /* ───────── gallery ───────── */
-const SLIDES = GALLERY.length ? GALLERY : GALLERY_PLACEHOLDERS.map((title) => ({ title, alt: title }))
+const SLIDES = [
+  ...GALLERY,
+  ...GALLERY_PLACEHOLDERS.slice(GALLERY.length).map((title) => ({ title, alt: title })),
+]
 
 function Gallery() {
   const h = SLIDES.length

@@ -53,7 +53,7 @@ export const BRIDE_FAMILY = {
 }
 export const GROOM_FAMILY = {
   parents: 'Smt. Mausam Devi & Shri Kishanlal Ji Singodiya',
-  grand: 'Grandson of Late Smt. Godi Devi & Late Shri Galkaram Ji',
+  grand: 'Grandson of Smt. Godi Devi & Shri Galkaram Ji',
   home: 'Ganesh Nagar-4, Dev Darshan Mandir, Jaipur',
 }
 
@@ -86,9 +86,9 @@ export const CONTACT = {
 export const RSVP_ENDPOINT = ''
 
 // Gallery — drop photos in public/assets/gallery and list them here.
-// Until then the carousel shows elegant placeholders.
+// Real photos come first; the remaining slots (up to 6 total) show placeholders.
 export const GALLERY = [
-  // { src: '/assets/gallery/01.jpg', title: 'Together', alt: 'Pooja and Nitesh together' },
+  { src: '/assets/gallery/01.jpg', title: 'Together', alt: 'Pooja and Nitesh standing together against a white wooden door' },
 ]
 export const GALLERY_PLACEHOLDERS = ['Our Story', 'Together', 'A Quiet Moment', 'Pre-wedding', 'Forever', 'Blessings']
 
