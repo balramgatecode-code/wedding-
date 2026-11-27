@@ -89,6 +89,8 @@ export const RSVP_ENDPOINT = ''
 // Real photos come first; the remaining slots (up to 6 total) show placeholders.
 export const GALLERY = [
   { src: '/assets/gallery/01.jpg', title: 'Together', alt: 'Pooja and Nitesh standing together against a white wooden door' },
+  { src: '/assets/gallery/02.jpg', title: 'Forever Begins', alt: 'Nitesh kneeling with a bouquet for Pooja on a floral stage', position: '22% 50%' },
+  { src: '/assets/gallery/03.jpg', title: 'Garden Evening', alt: 'Pooja and Nitesh standing together in a garden at sunset', position: '50% 22%' },
 ]
 export const GALLERY_PLACEHOLDERS = ['Our Story', 'Together', 'A Quiet Moment', 'Pre-wedding', 'Forever', 'Blessings']
 

@@ -564,7 +564,10 @@ function Gallery() {
                 aria-hidden={!near} tabIndex={off === 0 ? 0 : -1} onClick={() => (off === 0 ? undefined : go(idx))}>
                 <span className="gallery__photo">
                   {near && (it.src
-                    ? <img src={it.src} alt={it.alt} loading={off === 0 ? 'eager' : 'lazy'} decoding="async" />
+                    ? <>
+                        {it.fit === 'contain' && <img className="gallery__backdrop" src={it.src} alt="" aria-hidden="true" loading="lazy" decoding="async" />}
+                        <img className={it.fit === 'contain' ? 'gallery__img--contain' : undefined} src={it.src} alt={it.alt} loading={off === 0 ? 'eager' : 'lazy'} decoding="async" style={it.position ? { objectPosition: it.position } : undefined} />
+                      </>
                     : <span className="gallery__placeholder" aria-hidden="true"><b>{INITIALS}</b><i>✦</i></span>)}
                   <span className="gallery__caption">{it.title}</span>
                 </span>

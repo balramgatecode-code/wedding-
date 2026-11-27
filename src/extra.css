@@ -721,3 +721,15 @@ html, body {
 
 /* keep faces in frame for portrait gallery photos */
 .gallery__photo img{object-fit:cover;object-position:50% 8%}
+
+/* wide photos: show the whole picture over a blurred copy of itself */
+.gallery__photo .gallery__backdrop{position:absolute;inset:-12%;width:124%;height:124%;object-fit:cover;filter:blur(18px) brightness(.85) saturate(1.1);transform:none}
+.gallery__photo img.gallery__img--contain{position:relative;z-index:1;object-fit:contain}
+
+/* Phone carousel: give the cards two places away a real resting spot off to the side.
+   Before, they sat hidden in the centre, so incoming/outgoing cards slid through the active one. */
+@media(max-width:700px){
+  .gallery__slide[data-offset="2"],.gallery__slide[data-offset="-2"]{visibility:visible;pointer-events:none;opacity:0;z-index:0}
+  .gallery__slide[data-offset="2"]{transform:translate3d(135%,-50%,-144px) rotateY(-35deg) scale(.62)}
+  .gallery__slide[data-offset="-2"]{transform:translate3d(-235%,-50%,-144px) rotateY(35deg) scale(.62)}
+}
